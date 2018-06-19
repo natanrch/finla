@@ -2,7 +2,8 @@
 
 @section('content')
 <h1>Register a Earning</h1>
-<form action="#" method="post" class="form-group">
+<form action="add" method="post" class="form-group">
+<input type="hidden" name="_token" value="{{{ csrf_token() }}}">
 	<table>
 		<tr>
 			<th>Date:</th>
@@ -16,8 +17,8 @@
 			<th>Type</th>
 			<td>
 				<select name="type">
-					<option value="#">Option 1</option>
-					<option value="#">Option 2</option>
+					<option value="option1">Option 1</option>
+					<option value="option2">Option 2</option>
 				</select>
 			</td>
 		</tr>
