@@ -22,12 +22,13 @@ class EarningsController extends Controller
 
 	public function list()
 	{
-		$earnings = DB::select("select date, value, type from earnings");
-		$html = '<ul>';
-		foreach ($earnings as $e) {
-			$html .= '<li> Date: '.$e->date.', Value: '.$e->value.', Type: '.$e->type.'</li>';
-		}
-		$html .= '</ul>';
-		return $html;
+		$list = DB::select("select date, value, type from earnings");
+		return view('total-earnings')->with('list', $list);
+		// $html = '<ul>';
+		// foreach ($list as $l) {
+		// 	$html .= '<li> Date: '.$l->date.', Value: '.$l->value.', Type: '.$l->type.'</li>';
+		// }
+		// $html .= '</ul>';
+		// return $html;
 	}
 }
