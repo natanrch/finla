@@ -32,8 +32,8 @@ class EntryController extends Controller
 			on e.category_earnings_id = c.id");
 		return view('total-earnings')->with(['list' => $list]);
 	}
-	public function choose()
+	public function chooseEntry()
 	{
-		return view('choose');
+		return view('choose-entry');
 	}
 }
