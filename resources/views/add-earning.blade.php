@@ -4,6 +4,7 @@
 <h1>Register a Earning</h1>
 <form action="add" method="post" class="form-group">
 <input type="hidden" name="_token" value="{{{ csrf_token() }}}">
+<input type="hidden" name="table" value="{{$table}}">
 	<table>
 		<tr>
 			<th>Date:</th>

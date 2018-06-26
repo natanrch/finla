@@ -7,7 +7,8 @@ class EarningsController extends Controller
 
 	public function form()
 	{
-		return view('add-earning');
+		$table = Request::input('entry');
+		return view('add-earning')->with('table', $table);
 	}
 
 	public function addEntry()
@@ -15,8 +16,9 @@ class EarningsController extends Controller
 		$date = Request::input('date');
 		$value = Request::input('value');
 		$type = Request::input('type');
+		$table = Request::input('table');
 
-		DB::insert('insert into earnings values (null, ?, ?, ?)', array($date, $value, $type));
+		DB::insert('insert into '.$table.' values (null, ?, ?, ?)', array($date, $value, $type));
 		return 'Entry added!';
 	}
 
@@ -30,5 +32,9 @@ class EarningsController extends Controller
 		// }
 		// $html .= '</ul>';
 		// return $html;
+	}
+	public function choose()
+	{
+		return view('choose');
 	}
 }
