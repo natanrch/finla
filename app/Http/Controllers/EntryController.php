@@ -9,7 +9,7 @@ class EntryController extends Controller
 	{
 		$table = Request::input('entry');
 		$categories = DB::select('SELECT * FROM categories_'.$table);
-		return view('add-entry')->with(['table' => $table, 'categories' => $categories]);
+		return view('form')->with(['table' => $table, 'categories' => $categories]);
 	}
 
 	public function addEntry()
