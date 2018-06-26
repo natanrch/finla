@@ -7,17 +7,17 @@ class EarningsController extends Controller
 
 	public function form()
 	{
-		return view('register-earning');
+		return view('add-earning');
 	}
 
-	public function add()
+	public function addEntry()
 	{
 		$date = Request::input('date');
 		$value = Request::input('value');
 		$type = Request::input('type');
 
 		DB::insert('insert into earnings values (null, ?, ?, ?)', array($date, $value, $type));
-		return 'Produto adicionado!';
+		return 'Entry added!';
 	}
 
 	public function list()

@@ -1,5 +1,5 @@
 <?php
 
-Route::get('/register', 'EarningsController@form');
-Route::post('/add', 'EarningsController@add');
+Route::get('/add-entry', 'EarningsController@form');
+Route::post('/add', 'EarningsController@addEntry');
 Route::get('/list', 'EarningsController@list');
