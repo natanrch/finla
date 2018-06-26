@@ -1,6 +1,6 @@
 <?php
 
-Route::post('/add-entry', 'EarningsController@form');
-Route::post('/add', 'EarningsController@addEntry');
-Route::get('/list', 'EarningsController@list');
-Route::get('/choose', 'EarningsController@choose');
+Route::post('/add-entry', 'EntryController@form');
+Route::post('/add', 'EntryController@addEntry');
+Route::get('/list', 'EntryController@list');
+Route::get('/choose', 'EntryController@choose');

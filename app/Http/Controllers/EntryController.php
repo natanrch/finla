@@ -2,13 +2,13 @@
 use Illuminate\Support\Facades\DB;
 use Request;
 
-class EarningsController extends Controller
+class EntryController extends Controller
 {
 
 	public function form()
 	{
 		$table = Request::input('entry');
-		return view('add-earning')->with('table', $table);
+		return view('add-entry')->with('table', $table);
 	}
 
 	public function addEntry()
@@ -24,14 +24,9 @@ class EarningsController extends Controller
 
 	public function list()
 	{
+		//make this method usable to list expenses
 		$list = DB::select("select date, value, type from earnings");
 		return view('total-earnings')->with('list', $list);
-		// $html = '<ul>';
-		// foreach ($list as $l) {
-		// 	$html .= '<li> Date: '.$l->date.', Value: '.$l->value.', Type: '.$l->type.'</li>';
-		// }
-		// $html .= '</ul>';
-		// return $html;
 	}
 	public function choose()
 	{

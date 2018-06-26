@@ -1,7 +1,13 @@
 @extends('main')
 
 @section('content')
-<h1>Register a Earning</h1>
+
+@if($table == 'earnings')
+<h1>Register an Earning</h1>
+@else
+<h1>Register an Expense</h1>
+@endif
+
 <form action="add" method="post" class="form-group">
 <input type="hidden" name="_token" value="{{{ csrf_token() }}}">
 <input type="hidden" name="table" value="{{$table}}">
