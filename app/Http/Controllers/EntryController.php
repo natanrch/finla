@@ -25,7 +25,9 @@ class EntryController extends Controller
 	public function list()
 	{
 		//make this method usable to list expenses
-		$list = DB::select("select date, value, type from earnings");
+		$list = DB::select("SELECT e.date, e.value, c.name from earnings as e 
+			join categories_earnings as c 
+			on e.category_earnings_id = c.id");
 		return view('total-earnings')->with('list', $list);
 	}
 	public function choose()

@@ -6,13 +6,13 @@
 	<tr>
 		<th>Date</th>
 		<th>Value</th>
-		<th>Type</th>
+		<th>Category</th>
 	</tr>
 	<?php foreach ($list as $l): ?>
 	<tr>
-		<th>{{$l->date}}</th>
-		<th>{{$l->value}}</th>
-		<th>{{$l->type}}</th>
+		<td>{{$l->date}}</td>
+		<td>{{$l->value}}</td>
+		<td>{{$l->name}}</td>
 	</tr>
 	<?php endforeach ?>
 
