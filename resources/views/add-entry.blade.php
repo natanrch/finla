@@ -23,9 +23,10 @@
 		<tr>
 			<th>Type</th>
 			<td>
-				<select name="type">
-					<option value="option1">Option 1</option>
-					<option value="option2">Option 2</option>
+				<select name="category">
+					<?php foreach($categories as $c): ?>
+						<option value="{{$c->id}}">{{$c->name}}</option>
+					<?php endforeach ?>
 				</select>
 			</td>
 		</tr>

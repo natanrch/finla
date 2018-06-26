@@ -8,27 +8,29 @@ class EntryController extends Controller
 	public function form()
 	{
 		$table = Request::input('entry');
-		return view('add-entry')->with('table', $table);
+		$categories = DB::select('SELECT * FROM categories_'.$table);
+		return view('add-entry')->with(['table' => $table, 'categories' => $categories]);
 	}
 
 	public function addEntry()
 	{
 		$date = Request::input('date');
 		$value = Request::input('value');
-		$type = Request::input('type');
+		$category = Request::input('category');
 		$table = Request::input('table');
 
-		DB::insert('insert into '.$table.' values (null, ?, ?, ?)', array($date, $value, $type));
+		DB::insert('insert into '.$table.' values (null, ?, ?, ?)', array($date, $value, $category));
 		return 'Entry added!';
 	}
 
 	public function list()
 	{
+		
 		//make this method usable to list expenses
-		$list = DB::select("SELECT e.date, e.value, c.name from earnings as e 
+		$list = DB::select("SELECT e.id, e.date, e.value, c.name from earnings as e 
 			join categories_earnings as c 
 			on e.category_earnings_id = c.id");
-		return view('total-earnings')->with('list', $list);
+		return view('total-earnings')->with(['list' => $list]);
 	}
 	public function choose()
 	{
