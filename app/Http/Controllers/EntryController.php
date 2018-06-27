@@ -25,15 +25,20 @@ class EntryController extends Controller
 
 	public function list()
 	{
-		
+		$table = Request::input('entry');
 		//make this method usable to list expenses
-		$list = DB::select("SELECT e.id, e.date, e.value, c.name from earnings as e 
-			join categories_earnings as c 
-			on e.category_earnings_id = c.id");
+		$list = DB::select("SELECT e.id, e.date, e.value, c.name from ".$table." as e 
+			join categories_".$table." as c 
+			on e.category_".$table."_id = c.id");
 		return view('total-earnings')->with(['list' => $list]);
 	}
 	public function chooseEntry()
 	{
-		return view('choose-entry');
+		return view('choose')->with(['section' => 'form']);
+	}
+
+	public function chooseList()
+	{
+		return view('choose')->with(['section' => 'list']);
 	}
 }
