@@ -1,5 +1,6 @@
 <?php
 
+Route::get('/', 'StaticController@mainPage');
 Route::post('/form', 'EntryController@form');
 Route::post('/add', 'EntryController@addEntry');
 Route::post('/list', 'EntryController@list');
