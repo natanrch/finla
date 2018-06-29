@@ -11,7 +11,7 @@
 	<div class="container-fluid">
 
 	<div class="navbar-header">      
-	  <a class="navbar-brand" href="#">Finla</a>
+	  <a class="navbar-brand" href="/">Finla</a>
 	</div>
 
 	  <ul class="nav navbar-nav navbar-right">

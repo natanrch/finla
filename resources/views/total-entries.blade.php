@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('content')
-<h1>Earnings</h1>
+<h1>{{$entry}}</h1>
 <table class="table">
 	<tr>
 		<th>Date</th>

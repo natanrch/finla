@@ -29,9 +29,23 @@ class EntryController extends Controller
 		//make this method usable to list expenses
 		$list = DB::select("SELECT e.id, e.date, e.value, c.name from ".$table." as e 
 			join categories_".$table." as c 
-			on e.category_".$table."_id = c.id");
-		return view('total-earnings')->with(['list' => $list]);
+			on e.category_".$table."_id = c.id
+			ORDER BY e.date");
+		return view('total-entries')->with(['list' => $list, 'entry' => $table]);
 	}
+
+	public function listMonth()
+	{
+		$table = 'earnings';
+		//make this method usable to list expenses
+		$list = DB::select("SELECT e.id, e.date, e.value, c.name from ".$table." as e 
+			join categories_".$table." as c 
+			on e.category_".$table."_id = c.id
+			WHERE month(e.date) = 05
+			ORDER BY e.date");
+		return view('total-entries')->with(['list' => $list, 'entry' => $table]);
+	}
+
 	public function chooseEntry()
 	{
 		return view('choose')->with(['section' => 'form']);
