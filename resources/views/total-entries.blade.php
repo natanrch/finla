@@ -17,5 +17,6 @@
 	<?php endforeach ?>
 
 </table>
+<h2>Total: <?php echo($sum)?></h2>
 
 @stop

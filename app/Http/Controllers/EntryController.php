@@ -31,7 +31,9 @@ class EntryController extends Controller
 			join categories_".$table." as c 
 			on e.category_".$table."_id = c.id
 			ORDER BY e.date");
-		return view('total-entries')->with(['list' => $list, 'entry' => $table]);
+		$sum = DB::table($table)->sum('value');
+		//$sum = DB::select("SELECT sum(value) from ".$table);
+		return view('total-entries')->with(['list' => $list, 'entry' => $table, 'sum' => $sum]);
 	}
 
 	public function listMonth()
@@ -43,7 +45,8 @@ class EntryController extends Controller
 			on e.category_".$table."_id = c.id
 			WHERE month(e.date) = 05
 			ORDER BY e.date");
-		return view('total-entries')->with(['list' => $list, 'entry' => $table]);
+		$sum = DB::table($table)->where(DB::raw('month(date)'), '=', '06')->sum('value');
+		return view('total-entries')->with(['list' => $list, 'entry' => $table, 'sum' => $sum]);
 	}
 
 	public function chooseEntry()
