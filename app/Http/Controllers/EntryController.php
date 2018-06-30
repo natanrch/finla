@@ -32,7 +32,6 @@ class EntryController extends Controller
 			on e.category_".$table."_id = c.id
 			ORDER BY e.date");
 		$sum = DB::table($table)->sum('value');
-		//$sum = DB::select("SELECT sum(value) from ".$table);
 		return view('total-entries')->with(['list' => $list, 'entry' => $table, 'sum' => $sum]);
 	}
 
@@ -47,7 +46,25 @@ class EntryController extends Controller
 			WHERE month(e.date) = ".$month."
 			ORDER BY e.date");
 		$sum = DB::table($table)->where(DB::raw('month(date)'), '=', $month)->sum('value');
-		return view('total-entries')->with(['list' => $list, 'entry' => $table, 'sum' => $sum]);
+		$limits = DB::select("SELECT l.id, l.category_expenses_id, l.value, c.name from limits as l
+			join categories_expenses as c
+			on l.category_expenses_id = c.id
+			where month = ".$month);
+		return view('total-entries')->with(['list' => $list, 'entry' => $table, 'sum' => $sum, 'limits' => $limits]);
+	}
+
+	public function totalExpensesByCategories()
+	{
+		$categories = array();
+		$list = DB::select("SELECT e.value, c.name from expenses as e 
+			join categories_expenses as c
+			on e.category_expenses_id = c.id");
+		foreach ($list as $l) {
+			if(!in_array($l->name, $categories)){
+				array_push($categories, $l->name);
+			}
+		}
+		return $categories;
 	}
 
 	public function chooseEntry()

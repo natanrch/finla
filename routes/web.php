@@ -7,3 +7,4 @@ Route::post('/list', 'EntryController@list');
 Route::get('/choose-entry', 'EntryController@chooseEntry');
 Route::get('/choose-list', 'EntryController@chooseList');
 Route::post('/list-month', 'EntryController@listMonth');
+Route::get('/test', 'EntryController@totalExpensesByCategories');
