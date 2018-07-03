@@ -19,13 +19,12 @@
 </table>
 <h2>Total: <?php echo($sum)?></h2>
 
-@if(isset($limits))
-	@include('subviews.limits')
-@endif
-
-
 @if(isset($totalExpenses))
 	@include('subviews.total-expenses')
+@endif
+
+@if(isset($limits))
+	@include('subviews.limits')
 @endif
 
 @if(isset($diff))

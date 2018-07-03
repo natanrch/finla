@@ -3,7 +3,7 @@
 		
 	@foreach($totalExpenses as $key => $value)
 		<tr>
-			<td>{{$key}}</td>
+			<th>{{$key}}</th>
 			<td>{{$value}}</td>
 		</tr>
 	@endforeach

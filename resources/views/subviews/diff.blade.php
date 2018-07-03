@@ -10,7 +10,7 @@
 			}
 		?>
 		<tr class="{{$alert}}">
-			<td>{{$key}}</td>
+			<th>{{$key}}</th>
 			<td>{{$value}}</td>
 		</tr>
 	@endforeach
