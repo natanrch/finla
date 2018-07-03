@@ -28,6 +28,9 @@
 	@include('subviews.total-expenses')
 @endif
 
+@if(isset($diff))
+	@include('subviews.diff')
+@endif
 
 <form class="form-control" action="list-month" method="post">
 	<input type="hidden" name="_token" value="{{{ csrf_token() }}}">

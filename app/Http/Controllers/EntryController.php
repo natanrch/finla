@@ -58,7 +58,8 @@ class EntryController extends Controller
 		$sum = DB::table($table)->where(DB::raw('month(date)'), '=', $month)->sum('value');
 		$limits = $this->limits($month);
 		$totalExpenses = $this->totalExpensesByCategories($month);
-		return view('total-entries')->with(['list' => $list, 'entry' => $table, 'sum' => $sum, 'limits' => $limits, 'totalExpenses' => $totalExpenses]);
+		$diff = $this->calcDiff($month);
+		return view('total-entries')->with(['list' => $list, 'entry' => $table, 'sum' => $sum, 'limits' => $limits, 'totalExpenses' => $totalExpenses, 'diff' => $diff]);
 	}
 
 	private function totalExpensesByCategories($month)
@@ -90,9 +91,9 @@ class EntryController extends Controller
 		return $limits;
 	}
 
-	public function limitsTest()
+	public function limitsTest($month)
 	{
-		$month = '6';
+		
 		$limits = array();
 		$list = DB::select("SELECT l.id, l.category_expenses_id, l.value, c.name from limits as l
 			join categories_expenses as c
@@ -105,17 +106,20 @@ class EntryController extends Controller
 		return $limits;
 	}
 
-	public function calcDiff()
+	public function calcDiff($month)
 	{
-		$month = '6';
+		
 		$expenses = $this->totalExpensesByCategories($month);
-		$limits = $this->limitsTest();
+		$limits = $this->limitsTest($month);
 		$diff = array();
 		foreach ($limits as $key => $value) {
 			if(array_key_exists($key, $expenses)) {
-				echo $key.": ". ($value - $expenses[$key]).'<br>';
+				//echo $key.": ". ($value - $expenses[$key]).'<br>';
+				$diff[$key] = ($value - $expenses[$key]);
+			} else {
+				$diff[$key] = $value;
 			}
 		}
-		return var_dump($expenses).'<br>'.var_dump($limits);
+		return $diff;
 	}
 }
