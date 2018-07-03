@@ -17,6 +17,7 @@
 	  <ul class="nav navbar-nav navbar-right">
 	    <li><a href="/choose-list">Lists</a></li>
 	    <li><a href="/choose-entry">New Entry</a></li>
+	    <li><a href="/choose-category">New Category</a></li>
 	  </ul>
 
 	</div>

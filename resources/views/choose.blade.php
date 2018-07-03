@@ -1,11 +1,13 @@
 @extends('main')
 
 @section('content')
-<?php $section ?>
+
 @if($section == 'form')
-<h1>Do you want to register an earning or expense?</h1>
+	<h1>Do you want to register an earning or expense?</h1>
+@elseif($section == 'list')
+	<h1>Which list you want to see?</h1>
 @else
-<h1>Which list you want to see?</h1>
+	<h1>Which category you want to create?</h1>
 @endif
 
 <form class="form-control" action="{{$section}}" method="post">
