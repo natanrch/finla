@@ -50,21 +50,28 @@ class EntryController extends Controller
 			join categories_expenses as c
 			on l.category_expenses_id = c.id
 			where month = ".$month);
-		return view('total-entries')->with(['list' => $list, 'entry' => $table, 'sum' => $sum, 'limits' => $limits]);
+		$totalExpenses = $this->totalExpensesByCategories($month);
+		return view('total-entries')->with(['list' => $list, 'entry' => $table, 'sum' => $sum, 'limits' => $limits, 'totalExpenses' => $totalExpenses]);
 	}
 
-	public function totalExpensesByCategories()
+	public function totalExpensesByCategories($month)
 	{
 		$categories = array();
-		$list = DB::select("SELECT e.value, c.name from expenses as e 
+		$expenses = array();
+		$list = DB::select("SELECT e.value, c.name, e.category_expenses_id from expenses as e 
 			join categories_expenses as c
 			on e.category_expenses_id = c.id");
 		foreach ($list as $l) {
-			if(!in_array($l->name, $categories)){
-				array_push($categories, $l->name);
+			if(!in_array($l->category_expenses_id, $categories)){
+				$categories[$l->category_expenses_id] = $l->name;
 			}
 		}
-		return $categories;
+		foreach ($categories as $key => $value) {
+			$sum = DB::table('expenses')->where('category_expenses_id', '=', $key)->where(DB::raw('month(date)'), '=', $month)->sum('value');
+			$expenses[$value] = $sum;
+		}
+		//return view('test')->with(['categories' => $categories, 'expenses' => $expenses]);
+		return $expenses;
 	}
 
 	public function chooseEntry()

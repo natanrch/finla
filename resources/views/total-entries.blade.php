@@ -19,19 +19,35 @@
 </table>
 <h2>Total: <?php echo($sum)?></h2>
 
+@if(isset($limits))
 <table class="table">
 	<tr><th><h3>Limits</h3></th></tr>		
-@if($limits != [])
-	<tr>
-@foreach($limits as $l)
-		<tH>{{$l->name}}: </tH>
-		<td>{{$l->value}}</td>
-@endforeach
-	</tr>
-@else
-	<tr><th><h4>No limits established</h4></th></tr>
+	@if($limits != [] or $limits == 0)
+		<tr>
+		@foreach($limits as $l)
+			<tH>{{$l->name}}: </tH>
+			<td>{{$l->value}}</td>
+		@endforeach
+		</tr>
+	@else
+		<tr><th><h4>No limits established</h4></th></tr>
+	@endif
 @endif
 </table>
+
+@if(isset($totalExpenses))
+<h3>Total expenses by categories</h3>
+	<table class="table">
+		
+	@foreach($totalExpenses as $key => $value)
+		<tr>
+			<td>{{$key}}</td>
+			<td>{{$value}}</td>
+		</tr>
+	@endforeach
+	</table>
+@endif
+
 
 <form class="form-control" action="list-month" method="post">
 	<input type="hidden" name="_token" value="{{{ csrf_token() }}}">
