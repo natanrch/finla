@@ -23,6 +23,16 @@ class EntryController extends Controller
 		return 'Entry added!';
 	}
 
+	public function chooseEntry()
+	{
+		return view('choose')->with(['section' => 'form']);
+	}
+
+	public function chooseList()
+	{
+		return view('choose')->with(['section' => 'list']);
+	}
+
 	public function list()
 	{
 		$table = Request::input('entry');
@@ -46,15 +56,12 @@ class EntryController extends Controller
 			WHERE month(e.date) = ".$month."
 			ORDER BY e.date");
 		$sum = DB::table($table)->where(DB::raw('month(date)'), '=', $month)->sum('value');
-		$limits = DB::select("SELECT l.id, l.category_expenses_id, l.value, c.name from limits as l
-			join categories_expenses as c
-			on l.category_expenses_id = c.id
-			where month = ".$month);
+		$limits = $this->limits($month);
 		$totalExpenses = $this->totalExpensesByCategories($month);
 		return view('total-entries')->with(['list' => $list, 'entry' => $table, 'sum' => $sum, 'limits' => $limits, 'totalExpenses' => $totalExpenses]);
 	}
 
-	public function totalExpensesByCategories($month)
+	private function totalExpensesByCategories($month)
 	{
 		$categories = array();
 		$expenses = array();
@@ -74,13 +81,41 @@ class EntryController extends Controller
 		return $expenses;
 	}
 
-	public function chooseEntry()
+	private function limits($month)
 	{
-		return view('choose')->with(['section' => 'form']);
+		$limits = DB::select("SELECT l.id, l.category_expenses_id, l.value, c.name from limits as l
+			join categories_expenses as c
+			on l.category_expenses_id = c.id
+			where month = ".$month);
+		return $limits;
 	}
 
-	public function chooseList()
+	public function limitsTest()
 	{
-		return view('choose')->with(['section' => 'list']);
+		$month = '6';
+		$limits = array();
+		$list = DB::select("SELECT l.id, l.category_expenses_id, l.value, c.name from limits as l
+			join categories_expenses as c
+			on l.category_expenses_id = c.id
+			where month = ".$month);
+		foreach($list as $l)
+		{
+			$limits[$l->name] = $l->value;
+		}
+		return $limits;
+	}
+
+	public function calcDiff()
+	{
+		$month = '6';
+		$expenses = $this->totalExpensesByCategories($month);
+		$limits = $this->limitsTest();
+		$diff = array();
+		foreach ($limits as $key => $value) {
+			if(array_key_exists($key, $expenses)) {
+				echo $key.": ". ($value - $expenses[$key]).'<br>';
+			}
+		}
+		return var_dump($expenses).'<br>'.var_dump($limits);
 	}
 }
