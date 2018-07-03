@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('content')
-<h1>{{$entry}}</h1>
+<h1>{{ucfirst($entry)}}</h1>
 <table class="table">
 	<tr>
 		<th>Date</th>
@@ -20,32 +20,12 @@
 <h2>Total: <?php echo($sum)?></h2>
 
 @if(isset($limits))
-<table class="table">
-	<tr><th><h3>Limits</h3></th></tr>		
-	@if($limits != [] or $limits == 0)
-		<tr>
-		@foreach($limits as $l)
-			<tH>{{$l->name}}: </tH>
-			<td>{{$l->value}}</td>
-		@endforeach
-		</tr>
-	@else
-		<tr><th><h4>No limits established</h4></th></tr>
-	@endif
+	@include('subviews.limits')
 @endif
-</table>
+
 
 @if(isset($totalExpenses))
-<h3>Total expenses by categories</h3>
-	<table class="table">
-		
-	@foreach($totalExpenses as $key => $value)
-		<tr>
-			<td>{{$key}}</td>
-			<td>{{$value}}</td>
-		</tr>
-	@endforeach
-	</table>
+	@include('subviews.total-expenses')
 @endif
 
 
@@ -65,5 +45,4 @@
 	<button type="submit" class="btn btn-primary" name="month" value="11">November</button>
 	<button type="submit" class="btn btn-primary" name="month" value="12">December</button>
 </form>
-
 @stop
