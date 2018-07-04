@@ -33,7 +33,7 @@ class EntryController extends Controller
 		return view('choose')->with(['section' => 'list']);
 	}
 
-	public function list()
+	public function listTotal()
 	{
 		$table = Request::input('entry');
 		//make this method usable to list expenses
@@ -48,19 +48,31 @@ class EntryController extends Controller
 	public function listMonth()
 	{
 		$month = Request::input('month');
-		$table = Request::input('entry');
-		//make this method usable to list expenses
-		$list = DB::select("SELECT e.id, e.date, e.value, c.name from ".$table." as e 
-			join categories_".$table." as c 
-			on e.category_".$table."_id = c.id
-			WHERE month(e.date) = ".$month."
-			ORDER BY e.date");
-		$sum = DB::table($table)->where(DB::raw('month(date)'), '=', $month)->sum('value');
-		$limits = $this->limits($month);
+		$listExpenses = $this->listExpenses($month);
+		$sumExpenses = $this->sumExpenses($month);
+		$limits = $this->limitsList($month);
 		$totalExpenses = $this->totalExpensesByCategories($month);
 		$diff = $this->calcDiff($month);
-		return view('total-entries')->with(['list' => $list, 'entry' => $table, 'sum' => $sum, 'limits' => $limits, 'totalExpenses' => $totalExpenses, 'diff' => $diff]);
+		return view('details-month')->with(['listExpenses' => $listExpenses, 'sumExpenses' => $sumExpenses, 'limits' => $limits, 'totalExpenses' => $totalExpenses, 'diff' => $diff, 'month' => $month]);
 	}
+
+	private function listExpenses($month)
+	{
+		$listExpenses = DB::select("SELECT e.id, e.date, e.value, c.name from expenses as e 
+			join categories_expenses as c 
+			on e.category_expenses_id = c.id
+			WHERE month(e.date) = ".$month."
+			ORDER BY e.date");
+		return $listExpenses;
+	}
+
+	private function sumExpenses($month)
+	{
+		$sumExpenses = DB::table('expenses')->where(DB::raw('month(date)'), '=', $month)->sum('value');
+		return $sumExpenses;
+	}
+
+
 
 	private function totalExpensesByCategories($month)
 	{
@@ -82,7 +94,7 @@ class EntryController extends Controller
 		return $expenses;
 	}
 
-	private function limits($month)
+	private function limitsList($month)
 	{
 		$limits = DB::select("SELECT l.id, l.category_expenses_id, l.value, c.name from limits as l
 			join categories_expenses as c
@@ -91,7 +103,7 @@ class EntryController extends Controller
 		return $limits;
 	}
 
-	public function limitsTest($month)
+	private function limitsWithRef($month)
 	{
 		
 		$limits = array();
@@ -106,11 +118,11 @@ class EntryController extends Controller
 		return $limits;
 	}
 
-	public function calcDiff($month)
+	private function calcDiff($month)
 	{
 		
 		$expenses = $this->totalExpensesByCategories($month);
-		$limits = $this->limitsTest($month);
+		$limits = $this->limitsWithRef($month);
 		$diff = array();
 		foreach ($limits as $key => $value) {
 			if(array_key_exists($key, $expenses)) {

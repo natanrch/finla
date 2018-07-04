@@ -2,13 +2,9 @@
 
 @section('content')
 
-@if(isset($entry))
-	<h1>{{ucfirst($entry)}}</h1>
-@else
-	<h1>Details for month: {{$month}}</h1>
-@endif
+<h1>Details for month: {{$month}}</h1>
 
-
+<h2>Expenses</h2>
 <table class="table">
 	<tr>
 		<th>Date</th>
@@ -24,19 +20,13 @@
 	<?php endforeach ?>
 
 </table>
-<h2>Total: <?php echo($sum)?></h2>
+<h2>Total: {{$sumExpenses}}</h2>
 
-@if(isset($totalExpenses))
-	@include('subviews.total-expenses')
-@endif
 
-@if(isset($limits))
-	@include('subviews.limits')
-@endif
+@include('subviews.total-expenses')
+@include('subviews.limits')
+@include('subviews.diff')
 
-@if(isset($diff))
-	@include('subviews.diff')
-@endif
 
 <form class="form-control" action="list-month" method="post">
 	<input type="hidden" name="_token" value="{{{ csrf_token() }}}">
