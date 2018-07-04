@@ -4,6 +4,25 @@
 
 <h1>Details for month: {{$month}}</h1>
 
+<h2>Earnings</h2>
+<table class="table">
+	<tr>
+		<th>Date</th>
+		<th>Value</th>
+		<th>Category</th>
+	</tr>
+	<?php foreach ($listEarnings as $l): ?>
+	<tr>
+		<td>{{$l->date}}</td>
+		<td>{{$l->value}}</td>
+		<td>{{$l->name}}</td>
+	</tr>
+	<?php endforeach ?>
+
+</table>
+<h2>Total: {{$sumEarnings}}</h2>
+
+
 <h2>Expenses</h2>
 <table class="table">
 	<tr>
@@ -21,7 +40,6 @@
 
 </table>
 <h2>Total: {{$sumExpenses}}</h2>
-
 
 @include('subviews.total-expenses')
 @include('subviews.limits')

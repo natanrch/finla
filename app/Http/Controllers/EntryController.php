@@ -50,10 +50,12 @@ class EntryController extends Controller
 		$month = Request::input('month');
 		$listExpenses = $this->listExpenses($month);
 		$sumExpenses = $this->sumExpenses($month);
+		$listEarnings = $this->listEarnings($month);
+		$sumEarnings = $this->sumEarnings($month);
 		$limits = $this->limitsList($month);
 		$totalExpenses = $this->totalExpensesByCategories($month);
 		$diff = $this->calcDiff($month);
-		return view('details-month')->with(['listExpenses' => $listExpenses, 'sumExpenses' => $sumExpenses, 'limits' => $limits, 'totalExpenses' => $totalExpenses, 'diff' => $diff, 'month' => $month]);
+		return view('details-month')->with(['listExpenses' => $listExpenses, 'sumExpenses' => $sumExpenses, 'listEarnings' => $listEarnings, 'sumEarnings' => $sumEarnings, 'limits' => $limits, 'totalExpenses' => $totalExpenses, 'diff' => $diff, 'month' => $month]);
 	}
 
 	private function listExpenses($month)
@@ -72,7 +74,21 @@ class EntryController extends Controller
 		return $sumExpenses;
 	}
 
+	private function listEarnings($month)
+	{
+		$listEarnings = DB::select("SELECT e.id, e.date, e.value, c.name from earnings as e 
+			join categories_earnings as c 
+			on e.category_earnings_id = c.id
+			WHERE month(e.date) = ".$month."
+			ORDER BY e.date");
+		return $listEarnings;
+	}
 
+	private function sumEarnings($month)
+	{
+		$sumEarnings = DB::table('earnings')->where(DB::raw('month(date)'), '=', $month)->sum('value');
+		return $sumEarnings;
+	}
 
 	private function totalExpensesByCategories($month)
 	{
