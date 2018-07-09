@@ -1,4 +1,4 @@
-FINLA
+#finla
 
 This is a system for controling earnings and expenses I have as a Freelancer worker. I made it with Laravel for studies purpose, but the real thing is to make a mobile version of it.
 
