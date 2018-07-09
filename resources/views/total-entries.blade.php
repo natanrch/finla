@@ -15,7 +15,7 @@
 		<th>Value</th>
 		<th>Category</th>
 	</tr>
-	<?php foreach ($listExpenses as $l): ?>
+	<?php foreach ($list as $l): ?>
 	<tr>
 		<td>{{$l->date}}</td>
 		<td>{{$l->value}}</td>
