@@ -55,7 +55,8 @@ class EntryController extends Controller
 		$limits = $this->limitsList($month);
 		$totalExpenses = $this->totalExpensesByCategories($month);
 		$diff = $this->calcDiff($month);
-		return view('details-month')->with(['listExpenses' => $listExpenses, 'sumExpenses' => $sumExpenses, 'listEarnings' => $listEarnings, 'sumEarnings' => $sumEarnings, 'limits' => $limits, 'totalExpenses' => $totalExpenses, 'diff' => $diff, 'month' => $month]);
+		$discounts = $this->totalDiscounts($sumEarnings, $month);
+		return view('details-month')->with(['listExpenses' => $listExpenses, 'sumExpenses' => $sumExpenses, 'listEarnings' => $listEarnings, 'sumEarnings' => $sumEarnings, 'limits' => $limits, 'totalExpenses' => $totalExpenses, 'diff' => $diff, 'month' => $month, 'discounts' => $discounts]);
 	}
 
 	private function listExpenses($month)
@@ -155,5 +156,12 @@ class EntryController extends Controller
 			}
 		}
 		return $diff;
+	}
+
+	private function totalDiscounts($sumEarnings, $month)
+	{
+		$percentage = DB::table('discounts')->where('month', '=', $month)->sum('value');
+		$totalDiscounts = ($sumEarnings * $percentage)/100;
+		return $totalDiscounts; 
 	}
 }
