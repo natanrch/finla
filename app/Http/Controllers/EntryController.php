@@ -132,10 +132,7 @@ class EntryController extends Controller
 	{
 		
 		$limits = array();
-		$list = $this->limitsList($month);/*DB::select("SELECT l.id, l.category_expenses_id, l.value, c.name from limits as l
-			join categories_expenses as c
-			on l.category_expenses_id = c.id
-			where month = ".$month);*/
+		$list = $this->limitsList($month);
 		foreach($list as $l)
 		{
 			$limits[$l->name] = $l->value;
