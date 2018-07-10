@@ -116,6 +116,15 @@ class EntryController extends Controller
 			join categories_expenses as c
 			on l.category_expenses_id = c.id
 			where month = ".$month);
+		if (empty($limits)) {
+			while(empty($limits) and $month > 0) {
+				$month = $month - 1;
+				$limits = DB::select("SELECT l.id, l.category_expenses_id, l.value, c.name from limits as l
+				join categories_expenses as c
+				on l.category_expenses_id = c.id
+				where month = ".$month);
+			}
+		}
 		return $limits;
 	}
 
