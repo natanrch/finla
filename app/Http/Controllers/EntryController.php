@@ -56,7 +56,8 @@ class EntryController extends Controller
 		$totalExpenses = $this->totalExpensesByCategories($month);
 		$diff = $this->calcDiff($month);
 		$discounts = $this->totalDiscounts($sumEarnings, $month);
-		return view('details-month')->with(['listExpenses' => $listExpenses, 'sumExpenses' => $sumExpenses, 'listEarnings' => $listEarnings, 'sumEarnings' => $sumEarnings, 'limits' => $limits, 'totalExpenses' => $totalExpenses, 'diff' => $diff, 'month' => $month, 'discounts' => $discounts]);
+		$moneyLeft = $sumEarnings - $sumExpenses - $discounts;
+		return view('details-month')->with(['listExpenses' => $listExpenses, 'sumExpenses' => $sumExpenses, 'listEarnings' => $listEarnings, 'sumEarnings' => $sumEarnings, 'limits' => $limits, 'totalExpenses' => $totalExpenses, 'diff' => $diff, 'month' => $month, 'discounts' => $discounts, 'moneyLeft' => $moneyLeft]);
 	}
 
 	private function listExpenses($month)

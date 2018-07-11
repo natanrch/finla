@@ -11,6 +11,7 @@
 @include('subviews.diff')
 @include('subviews.months')
 
-<?php var_dump($discounts); ?>
+<?php var_dump($discounts);
+var_dump($moneyLeft); ?>
 
 @stop
