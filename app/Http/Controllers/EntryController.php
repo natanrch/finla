@@ -162,6 +162,12 @@ class EntryController extends Controller
 	private function totalDiscounts($sumEarnings, $month)
 	{
 		$percentage = DB::table('discounts')->where('month', '=', $month)->sum('value');
+		if (empty($percentage)) {
+			while(empty($percentage) and $month > 0) {
+				$month = $month - 1;
+				$percentage = DB::table('discounts')->where('month', '=', $month)->sum('value');
+			}
+		}
 		$totalDiscounts = ($sumEarnings * $percentage)/100;
 		return $totalDiscounts; 
 	}
