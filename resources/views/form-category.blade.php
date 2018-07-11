@@ -7,7 +7,7 @@
 @else
 	<h1>New Earning Category</h1>
 @endif
-<form action="save" method="post" class="form-control">
+<form action="save-category" method="post" class="form-control">
 	<input type="hidden" name="_token" value="{{{ csrf_token() }}}">
 	<input type="hidden" name="table" value="{{$table}}">
 	<input type="text" name="name" placeholder="name">

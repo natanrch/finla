@@ -18,6 +18,7 @@
 	    <li><a href="/choose-list">Lists</a></li>
 	    <li><a href="/choose-entry">New Entry</a></li>
 	    <li><a href="/choose-category">New Category</a></li>
+	    <li><a href="/form-discount">New Discount</a></li>
 	    <li><a href="/details">Details</a></li>
 	  </ul>
 
