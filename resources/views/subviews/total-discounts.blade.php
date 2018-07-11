@@ -1,0 +1,1 @@
+<h3>The total amount of discounts is: {{$discounts}}</h3>

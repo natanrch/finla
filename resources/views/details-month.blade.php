@@ -9,9 +9,9 @@
 @include('subviews.total-expenses')
 @include('subviews.limits')
 @include('subviews.diff')
+@include('subviews.total-discounts')
+@include('subviews.money-left')
 @include('subviews.months')
 
-<?php var_dump($discounts);
-var_dump($moneyLeft); ?>
 
 @stop
