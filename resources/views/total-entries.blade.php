@@ -18,12 +18,12 @@
 	<?php foreach ($list as $l): ?>
 	<tr>
 		<td>{{$l->date}}</td>
-		<td>{{$l->value}}</td>
+		<td>R$ {{$l->value}}</td>
 		<td>{{$l->name}}</td>
 	</tr>
 	<?php endforeach ?>
 
 </table>
-<h2>Total: <?php echo($sum)?></h2>
+<h2>Total: R$ {{$sum}}</h2>
 @include('subviews.months')
 @stop

@@ -1,1 +1,1 @@
-<h3>The total amount of discounts is: {{$discounts}}</h3>
+<h3>The total amount of discounts is: R$ {{$discounts}}</h3>

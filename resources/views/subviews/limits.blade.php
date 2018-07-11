@@ -4,7 +4,7 @@
 		<tr>
 		@foreach($limits as $l)
 			<tH>{{$l->name}}: </tH>
-			<td>{{$l->value}}</td>
+			<td>R$ {{$l->value}}</td>
 		@endforeach
 		</tr>
 	@else

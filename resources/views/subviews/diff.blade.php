@@ -11,7 +11,7 @@
 		?>
 		<tr class="{{$alert}}">
 			<th>{{$key}}</th>
-			<td>{{$value}}</td>
+			<td>R$ {{$value}}</td>
 		</tr>
 	@endforeach
 	</table>

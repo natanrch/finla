@@ -8,10 +8,10 @@
 	<?php foreach ($listEarnings as $l): ?>
 	<tr>
 		<td>{{$l->date}}</td>
-		<td>{{$l->value}}</td>
+		<td>R$ {{$l->value}}</td>
 		<td>{{$l->name}}</td>
 	</tr>
 	<?php endforeach ?>
 
 </table>
-<h2>Total: {{$sumEarnings}}</h2>
+<h2>Total: R$ {{$sumEarnings}}</h2>

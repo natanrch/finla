@@ -1,1 +1,1 @@
-<h3>The money left to expend is: {{$moneyLeft}}</h3>
+<h3>The money left to expend is: R$ {{$moneyLeft}}</h3>

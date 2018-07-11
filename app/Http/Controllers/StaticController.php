@@ -6,4 +6,9 @@ class StaticController
 	{
 		return view('start');
 	}
+
+	public function details()
+	{
+		return view('details');
+	}
 }
