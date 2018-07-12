@@ -11,5 +11,5 @@ Route::post('/list-month', 'EntryController@listMonth');
 Route::get('/choose-category', 'CategoryController@choose');
 Route::post('/form-category', 'CategoryController@form');
 Route::post('/save-category', 'CategoryController@save');
-Route::get('/form-discount', 'DiscountController@form');
+Route::get('/discounts', 'DiscountController@main');
 Route::post('/save-discount', 'DiscountController@save');

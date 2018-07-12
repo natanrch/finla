@@ -8,20 +8,19 @@ class DiscountController
 
 
 
-	public function form()
+	public function main()
 	{
-		return view('form-discount');
+		$list = $this->select();
+		return view('main-discount')->with(['list' => $list]);
 	}
 
-/*
+
 	public function select()
 	{
-		$all = CategoryExpense::all();
-		foreach ($all as $a) {
-			echo $a->name.'<br>';
-		}
+		$all = Discount::all();
+		return $all;
 	}
-*/
+
 	public function save()
 	{
 		$name = Request::input('name');
