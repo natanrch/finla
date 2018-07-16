@@ -17,7 +17,6 @@
 	  <ul class="nav navbar-nav navbar-right">
 	    <li><a href="/earnings">Earnings</a></li>
 	    <li><a href="/expenses">Expenses</a></li>
-	    <li><a href="/choose-entry">New Entry</a></li>
 	    <li><a href="/choose-category">New Category</a></li>
 	    <li><a href="/discounts">Discounts</a></li>
 	    <li><a href="/details">Details</a></li>

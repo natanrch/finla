@@ -6,13 +6,6 @@ use finla\Earning;
 class EntryController extends Controller
 {
 
-	public function form()
-	{
-		$table = Request::input('entry');
-		$categories = DB::select('SELECT * FROM categories_'.$table);
-		return view('form')->with(['table' => $table, 'categories' => $categories]);
-	}
-
 	public function addEntry()
 	{
 		$date = Request::input('date');
@@ -40,7 +33,8 @@ class EntryController extends Controller
 			on e.category_earnings_id = c.id
 			ORDER BY e.date");
 		$sum = DB::table('earnings')->sum('value');
-		return view('total-entries')->with(['list' => $list, 'entry' => 'earnings', 'sum' => $sum]);
+		$categories = DB::select('SELECT * FROM categories_earnings');
+		return view('total-entries')->with(['list' => $list, 'entry' => 'earnings', 'sum' => $sum, 'categories' => $categories]);
 	}
 
 	public function listTotalExpenses()
@@ -50,7 +44,8 @@ class EntryController extends Controller
 			on e.category_expenses_id = c.id
 			ORDER BY e.date");
 		$sum = DB::table('expenses')->sum('value');
-		return view('total-entries')->with(['list' => $list, 'entry' => 'expenses', 'sum' => $sum]);
+		$categories = DB::select('SELECT * FROM categories_expenses');
+		return view('total-entries')->with(['list' => $list, 'entry' => 'expenses', 'sum' => $sum, 'categories' => $categories]);
 	}
 
 	public function listMonth()

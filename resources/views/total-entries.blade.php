@@ -2,12 +2,10 @@
 
 @section('content')
 
-@if(isset($entry))
-	<h1>{{ucfirst($entry)}}</h1>
-@else
-	<h1>Details for month: {{$month}}</h1>
-@endif
 
+<h1 class="text-center">{{ucfirst($entry)}}</h1>
+
+@include('subviews.form-entry')
 
 <table class="table">
 	<tr>
