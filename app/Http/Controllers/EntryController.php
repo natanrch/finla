@@ -14,7 +14,7 @@ class EntryController extends Controller
 		$table = Request::input('table');
 
 		DB::insert('insert into '.$table.' values (null, ?, ?, ?)', array($date, $value, $category));
-		return redirect('/list')->withInput();
+		return redirect('/'.$table);
 	}
 
 	public function chooseEntry()
