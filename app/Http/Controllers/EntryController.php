@@ -1,6 +1,7 @@
 <?php namespace finla\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Request;
+use finla\Earning;
 
 class EntryController extends Controller
 {
@@ -20,7 +21,7 @@ class EntryController extends Controller
 		$table = Request::input('table');
 
 		DB::insert('insert into '.$table.' values (null, ?, ?, ?)', array($date, $value, $category));
-		return 'Entry added!';
+		return redirect('/list')->withInput();
 	}
 
 	public function chooseEntry()
@@ -32,17 +33,24 @@ class EntryController extends Controller
 	{
 		return view('choose')->with(['section' => 'list']);
 	}
-
-	public function listTotal()
+	public function listTotalEarnings()
 	{
-		$table = Request::input('entry');
-		//make this method usable to list expenses
-		$list = DB::select("SELECT e.id, e.date, e.value, c.name from ".$table." as e 
-			join categories_".$table." as c 
-			on e.category_".$table."_id = c.id
+		$list = DB::select("SELECT e.id, e.date, e.value, c.name from earnings as e 
+			join categories_earnings as c 
+			on e.category_earnings_id = c.id
 			ORDER BY e.date");
-		$sum = DB::table($table)->sum('value');
-		return view('total-entries')->with(['list' => $list, 'entry' => $table, 'sum' => $sum]);
+		$sum = DB::table('earnings')->sum('value');
+		return view('total-entries')->with(['list' => $list, 'entry' => 'earnings', 'sum' => $sum]);
+	}
+
+	public function listTotalExpenses()
+	{
+		$list = DB::select("SELECT e.id, e.date, e.value, c.name from expenses as e 
+			join categories_expenses as c 
+			on e.category_expenses_id = c.id
+			ORDER BY e.date");
+		$sum = DB::table('expenses')->sum('value');
+		return view('total-entries')->with(['list' => $list, 'entry' => 'expenses', 'sum' => $sum]);
 	}
 
 	public function listMonth()
