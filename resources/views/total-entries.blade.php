@@ -5,6 +5,12 @@
 
 <h1 class="text-center">{{ucfirst($entry)}}</h1>
 
+@if(old('table'))
+	<div class="alert alert-success">
+		New entry added to {{old('table')}}!!
+	</div>
+@endif
+
 @include('subviews.form-entry')
 
 <table class="table">
