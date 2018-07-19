@@ -3,7 +3,7 @@
 @section('content')
 
 <table class="table">
-	<tr><th><h3>Limits</h3></th></tr>		
+	<tr><th><h3>Discounts/h3></th></tr>		
 	@if($list != [] or $list == 0)
 		<tr>
 			<th>Goal</th>

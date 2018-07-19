@@ -10,3 +10,4 @@ Route::get('/categories', 'CategoryController@allCategories');
 Route::post('/save-category', 'CategoryController@save');
 Route::get('/discounts', 'DiscountController@main');
 Route::post('/save-discount', 'DiscountController@save');	
+Route::get('/limits', 'LimitController@main');
