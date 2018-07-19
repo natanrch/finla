@@ -1,4 +1,4 @@
-<form class="form-control" action="list-month" method="post">
+<form class="form-control" action="details" method="post">
 	<input type="hidden" name="_token" value="{{{ csrf_token() }}}">
 	<!--<input type="hidden" name="entry" value="entry" >-->
 	<button type="submit" class="btn btn-primary" name="month" value="01">January</button>

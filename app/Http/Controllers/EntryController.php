@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\DB;
 use Request;
 use finla\Earning;
+use DateTime;
 
 class EntryController extends Controller
 {
@@ -48,9 +49,16 @@ class EntryController extends Controller
 		return view('total-entries')->with(['list' => $list, 'entry' => 'expenses', 'sum' => $sum, 'categories' => $categories]);
 	}
 
-	public function listMonth()
+	public function details()
 	{
-		$month = Request::input('month');
+		if(Request::input('month'))
+		{
+			$month = Request::input('month');
+		}else 
+		{
+			$dateTime = new DateTime;
+			$month = $dateTime->format('m');
+		}
 		$listExpenses = $this->listExpenses($month);
 		$sumExpenses = $this->sumExpenses($month);
 		$listEarnings = $this->listEarnings($month);

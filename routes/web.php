@@ -1,11 +1,11 @@
 <?php
 
 Route::get('/', 'StaticController@mainPage');
-Route::get('/details', 'StaticController@details');
+Route::get('/details', 'EntryController@details');
+Route::post('/details', 'EntryController@details');
 Route::post('/add', 'EntryController@addEntry');
 Route::get('earnings', 'EntryController@listTotalEarnings');
 Route::get('expenses', 'EntryController@listTotalExpenses');
-Route::post('/list-month', 'EntryController@listMonth');
 Route::get('/categories', 'CategoryController@allCategories');
 Route::post('/save-category', 'CategoryController@save');
 Route::get('/discounts', 'DiscountController@main');
