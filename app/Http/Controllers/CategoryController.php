@@ -13,18 +13,38 @@ class CategoryController
 		return view('form-category')->with(['table' => $table]);
 	}
 
+	public function listCategoriesEarnings()
+	{
+		$allEarnings = CategoryEarning::all();
+		return $allEarnings;
+	}
+
+	public function allCategories()
+	{
+		$allEarnings = $this->listCategoriesEarnings();
+		$allExpenses = $this->listCategoriesExpenses();
+		return view('main-category')->with(['allEarnings' => $allEarnings, 'allExpenses' => $allExpenses]);
+	}
+
+	public function listCategoriesExpenses()
+	{
+		$allExpenses = CategoryExpense::all();
+		return $allExpenses;
+	}
+
+
 	public function choose()
 	{
 		return view('choose')->with(['section' => 'form-category']);
 	}
 
-	public function select()
+	/*public function select()
 	{
 		$all = CategoryExpense::all();
 		foreach ($all as $a) {
 			echo $a->name.'<br>';
 		}
-	}
+	}*/
 
 	public function save()
 	{
@@ -40,6 +60,6 @@ class CategoryController
 
 		$category->name = $name;
 		$category->save();
-		return 'Category successfully inserted!';
+		return redirect('categories')->withInput();
 	}
 }
