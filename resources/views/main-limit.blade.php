@@ -2,7 +2,23 @@
 
 @section('content')
 
-<h1>Limits</h1>
+<h1 class="text-center">Limits</h1>
+
+<h3>New Limit</h3>
+
+<form action="save-limit" method="post" class="form-control">
+	<input type="hidden" name="_token" value="{{{ csrf_token() }}}">
+	<label for="category">Category: </label>
+	<select name="category">
+		@foreach($categories as $c)
+			<option value="{{$c->id}}">{{$c->name}}</option>
+		@endforeach
+	</select>
+	<input type="number" step="0.01" name="value" placeholder="value">
+	<input type="number" name="month" placeholder="number of the month">
+	<input type="number" name="year" placeholder="number of the year">
+	<button type="submit" class="btn btn-primary">Send</button>
+</form>
 <table class="table">
 	<tr>
 		<th>Name</th>
@@ -18,5 +34,6 @@
 	@endforeach
 	
 </table>
+
 
 @stop
