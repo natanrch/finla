@@ -63,4 +63,25 @@ class LimitController
 		}
 		return $currentLimit;
 	}
+
+	public function newMonthLimits()
+	{
+		$dateTime = new DateTime;
+		$month = $dateTime->format('m');
+		$year = $dateTime->format('Y');
+		$all = Request::all();
+		foreach ($all as $key => $value) {
+			if($key != '_token') {
+
+				$limit = new Limit;
+
+				$limit->category_expenses_id = $key;
+				$limit->value = $value;
+				$limit->month = $month;
+				$limit->year = $year;
+				$limit->save();	
+			}
+		}
+		return redirect('limits')->withInput();
+	}
 }
