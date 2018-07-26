@@ -12,4 +12,5 @@ Route::get('/discounts', 'DiscountController@main');
 Route::post('/save-discount', 'DiscountController@save');	
 Route::get('/limits', 'LimitController@main');
 Route::post('/save-limit', 'LimitController@save');
-Route::get('/test', 'LimitController@test');
+Route::get('/test', 'LimitController@formMonthLimits');
+Route::post('/new-month-limits', 'LimitController@newMonthLimits');

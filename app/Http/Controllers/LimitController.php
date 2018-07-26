@@ -32,23 +32,24 @@ class LimitController
 
 	}
 
-	public function test()
+	public function formMonthLimits()
 	{
 		$categories = array();
-		$expenses = array();
+		$currentLimits = array();
 		$list = DB::select("SELECT c.name, l.category_expenses_id from limits as l 
 			join categories_expenses as c
 			on l.category_expenses_id = c.id");
 		foreach ($list as $l) {
 			if(!in_array($l->category_expenses_id, $categories)){
 				$categories[$l->category_expenses_id] = $l->name;
+				$currentLimit = $this->currentLimit($l->category_expenses_id);
+				$currentLimits[$l->category_expenses_id] = $currentLimit;
 			}
 		}
-		$currentLimit = $this->currentLimit(1);
-		return view('test')->with(['categories' => $categories, 'currentLimit' => $currentLimit]);
+		return view('test')->with(['categories' => $categories, 'currentLimits' => $currentLimits]);
 	}
 
-	public function currentLimit($categoryExpense)
+	private function currentLimit($categoryExpense)
 	{
 		$dateTime = new DateTime;
 		$month = $dateTime->format('m');
