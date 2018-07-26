@@ -1,7 +1,6 @@
 <?php namespace finla\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Request;
-use finla\Earning;
 use finla\DateFormat;
 use DateTime;
 
