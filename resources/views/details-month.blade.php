@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>Details for month: {{$month}}</h1>
+<h1>Details for month: {{ucfirst($monthName)}}</h1>
 
 @include('subviews.earnings-list')
 @include('subviews.expenses-list')

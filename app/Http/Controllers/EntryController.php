@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\DB;
 use Request;
 use finla\Earning;
+use finla\DateFormat;
 use DateTime;
 
 class EntryController extends Controller
@@ -68,7 +69,8 @@ class EntryController extends Controller
 		$diff = $this->calcDiff($month);
 		$discounts = $this->totalDiscounts($sumEarnings, $month);
 		$moneyLeft = $this->calcMoneyLeft($sumEarnings, $sumExpenses, $discounts);
-		return view('details-month')->with(['listExpenses' => $listExpenses, 'sumExpenses' => $sumExpenses, 'listEarnings' => $listEarnings, 'sumEarnings' => $sumEarnings, 'limits' => $limits, 'totalExpenses' => $totalExpenses, 'diff' => $diff, 'month' => $month, 'discounts' => $discounts, 'moneyLeft' => $moneyLeft]);
+		$monthName = DateFormat::monthName($month);
+		return view('details-month')->with(['listExpenses' => $listExpenses, 'sumExpenses' => $sumExpenses, 'listEarnings' => $listEarnings, 'sumEarnings' => $sumEarnings, 'limits' => $limits, 'totalExpenses' => $totalExpenses, 'diff' => $diff, 'month' => $month, 'discounts' => $discounts, 'moneyLeft' => $moneyLeft, 'monthName' => $monthName]);
 	}
 
 	private function listExpenses($month)
