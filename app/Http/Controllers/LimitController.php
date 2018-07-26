@@ -53,6 +53,13 @@ class LimitController
 		$dateTime = new DateTime;
 		$month = $dateTime->format('m');
 		$currentLimit = DB::select("SELECT c.name, l.category_expenses_id, l.value from limits as l join categories_expenses as c on l.category_expenses_id = c.id where  (category_expenses_id = ".$categoryExpense." and month = ".$month.")");
+		if(empty($currentLimit)) {
+			while(empty($currentLimit) and $month > 0) {
+				$month = $month - 1;
+				$currentLimit = DB::select("SELECT c.name, l.category_expenses_id, l.value from limits as l join categories_expenses as c on l.category_expenses_id = c.id where  (category_expenses_id = ".$categoryExpense." and month = ".$month.")");
+			}
+
+		}
 		return $currentLimit;
 	}
 }
