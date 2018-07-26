@@ -1,3 +1,4 @@
+<?php use finla\DateFormat; ?>
 @extends('main')
 
 @section('content')
@@ -29,7 +30,7 @@
 	<tr>
 		<td>{{$l->name}}</td>
 		<td>R$ {{$l->value}}</td>
-		<td>{{$l->month}}/{{$l->year}}</td>
+		<td>{{DateFormat::monthName($l->month)}}/{{$l->year}}</td>
 	</tr>
 	@endforeach
 	
