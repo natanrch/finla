@@ -38,13 +38,6 @@ class CategoryController
 		return view('choose')->with(['section' => 'form-category']);
 	}
 
-	/*public function select()
-	{
-		$all = CategoryExpense::all();
-		foreach ($all as $a) {
-			echo $a->name.'<br>';
-		}
-	}*/
 
 	public function save()
 	{
@@ -61,5 +54,19 @@ class CategoryController
 		$category->name = $name;
 		$category->save();
 		return redirect('categories')->withInput();
+	}
+
+	public function deleteCategory()
+	{
+		$id = Request::input('id');
+		$category = Request::input('category');
+		if($category == 'expense') {
+			CategoryExpense::where('id', $id)->delete();
+		}
+		if($category == 'earning') {
+			CategoryEarning::where('id', $id)->delete();
+		}
+		return redirect('categories')->withInput();
+		
 	}
 }

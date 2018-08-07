@@ -22,14 +22,20 @@
 <h1>Earning Categories</h1>
 <table class="table">
 	@foreach($allEarnings as $a)
-		<tr><td>{{$a->name}}</td></tr>
+		<tr>
+			<td>{{$a->name}}</td>
+			<td><a href="delete?id={{$a->id}}&category=earning">Delete</a></td>
+		</tr>
 	@endforeach
 </table>
 
 <h1>Expense Categories</h1>
 <table class="table">
 	@foreach($allExpenses as $a)
-		<tr><td>{{$a->name}}</td></tr>
+		<tr>
+			<td>{{$a->name}}</td>
+			<td><a href="delete?id={{$a->id}}&category=expense">Delete</a></td>
+		</tr>
 	@endforeach
 </table>
 @stop
