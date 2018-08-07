@@ -84,4 +84,14 @@ class LimitController
 		}
 		return redirect('limits')->withInput();
 	}
+
+	public function delete()
+	{
+		$id = Request::input('id');
+		
+		Limit::where('id', $id)->delete();
+		
+		return redirect('limits')->withInput();
+		
+	}
 }

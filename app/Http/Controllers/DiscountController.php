@@ -38,4 +38,14 @@ class DiscountController
 		return 'Discount successfully inserted!';
 	}
 
+	public function delete()
+	{
+		$id = Request::input('id');
+		
+		Discount::where('id', $id)->delete();
+		
+		return redirect('discounts')->withInput();
+		
+	}
+
 }

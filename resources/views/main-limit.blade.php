@@ -31,6 +31,7 @@
 		<td>{{$l->name}}</td>
 		<td>R$ {{$l->value}}</td>
 		<td>{{DateFormat::monthName($l->month)}}/{{$l->year}}</td>
+		<td><a href="delete-limit?id={{$l->id}}" class="btn btn-danger">Delete</a></td>
 	</tr>
 	@endforeach
 	

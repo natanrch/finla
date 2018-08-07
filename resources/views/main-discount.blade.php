@@ -29,6 +29,7 @@
 				<td>{{$l->name}}</td>
 				<td>{{$l->value}} %</td>
 				<td>{{DateFormat::monthName($l->month)}}/{{$l->year}}</td>
+				<td><a href="delete-discount?id={{$l->id}}" class="btn btn-danger">Delete</a></td>
 			</tr>
 		@endforeach
 	@else

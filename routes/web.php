@@ -17,3 +17,5 @@ Route::post('/new-month-limits', 'LimitController@newMonthLimits');
 
 Route::get('/delete-category', 'CategoryController@delete');
 Route::get('/delete-entry', 'EntryController@delete');
+Route::get('/delete-discount', 'DiscountController@delete');
+Route::get('/delete-limit', 'LimitController@delete');
