@@ -24,7 +24,7 @@
 	@foreach($allEarnings as $a)
 		<tr>
 			<td>{{$a->name}}</td>
-			<td><a href="delete?id={{$a->id}}&category=earning">Delete</a></td>
+			<td><a href="delete-category?id={{$a->id}}&category=earning" class="btn btn-danger">Delete</a></td>
 		</tr>
 	@endforeach
 </table>
@@ -34,7 +34,7 @@
 	@foreach($allExpenses as $a)
 		<tr>
 			<td>{{$a->name}}</td>
-			<td><a href="delete?id={{$a->id}}&category=expense">Delete</a></td>
+			<td><a href="delete-category?id={{$a->id}}&category=expense" class="btn btn-danger">Delete</a></td>
 		</tr>
 	@endforeach
 </table>

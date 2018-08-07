@@ -24,6 +24,7 @@
 		<td>{{$l->date}}</td>
 		<td>R$ {{$l->value}}</td>
 		<td>{{$l->name}}</td>
+		<td><a href="delete-entry?id={{$l->id}}&entry={{$entry}}" class="btn btn-danger">Delete</a></td>
 	</tr>
 	<?php endforeach ?>
 

@@ -15,4 +15,5 @@ Route::post('/save-limit', 'LimitController@save');
 Route::get('/test', 'LimitController@formMonthLimits');
 Route::post('/new-month-limits', 'LimitController@newMonthLimits');
 
-Route::get('/delete', 'CategoryController@deleteCategory');
+Route::get('/delete-category', 'CategoryController@delete');
+Route::get('/delete-entry', 'EntryController@delete');

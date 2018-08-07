@@ -56,7 +56,7 @@ class CategoryController
 		return redirect('categories')->withInput();
 	}
 
-	public function deleteCategory()
+	public function delete()
 	{
 		$id = Request::input('id');
 		$category = Request::input('category');

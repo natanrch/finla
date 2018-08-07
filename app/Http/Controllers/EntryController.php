@@ -2,6 +2,8 @@
 use Illuminate\Support\Facades\DB;
 use Request;
 use finla\DateFormat;
+use finla\Earning;
+use finla\Expense;
 use DateTime;
 
 class EntryController extends Controller
@@ -188,5 +190,19 @@ class EntryController extends Controller
 	{
 		$moneyLeft = $sumEarnings - $sumExpenses - $discounts;
 		return $moneyLeft;
+	}
+
+	public function delete()
+	{
+		$id = Request::input('id');
+		$entry = Request::input('entry');
+		if($entry == 'expenses') {
+			Expense::where('id', $id)->delete();
+		}
+		if($entry == 'earnings') {
+			Earning::where('id', $id)->delete();
+		}
+		return redirect($entry)->withInput();
+		
 	}
 }
