@@ -19,7 +19,7 @@
 
 	      <div class="collapse navbar-collapse" id="navbarSite">
 	      	
-			  <ul class="navbar-nav mr-auto">
+			  <ul class="navbar-nav ml-auto">
 			    <li class="nav-item"><a class="nav-link" href="/earnings">Earnings</a></li>
 			    <li class="nav-item"><a class="nav-link" href="/expenses">Expenses</a></li>
 			    <li class="nav-item"><a class="nav-link" href="/categories">Categories</a></li>
@@ -35,5 +35,8 @@
     @yield('content')
 
   </div>
+
+  <script type="text/javascript"></script>
 </body>
+
 </html>
