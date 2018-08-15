@@ -7,23 +7,29 @@
 <body>
   <div class="container">
 
-	<nav class="navbar navbar-default">
-	<div class="container-fluid">
 
-	<div class="navbar-header">      
-	  <a class="navbar-brand" href="/">Finla</a>
-	</div>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 
-	  <ul class="nav navbar-nav navbar-right">
-	    <li><a href="/earnings">Earnings</a></li>
-	    <li><a href="/expenses">Expenses</a></li>
-	    <li><a href="/categories">Categories</a></li>
-	    <li><a href="/discounts">Discounts</a></li>
-	    <li><a href="/limits">Limits</a></li>
-	    <li><a href="/details">Details</a></li>
-	  </ul>
+		<div class="container">
+     
+		  <a class="navbar-brand h1 mb-0" href="/">Finla</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
+	          <span class="navbar-toggler-icon"></span>
+	      </button>
 
-	</div>
+	      <div class="collapse navbar-collapse" id="navbarSite">
+	      	
+			  <ul class="navbar-nav mr-auto">
+			    <li class="nav-item"><a class="nav-link" href="/earnings">Earnings</a></li>
+			    <li class="nav-item"><a class="nav-link" href="/expenses">Expenses</a></li>
+			    <li class="nav-item"><a class="nav-link" href="/categories">Categories</a></li>
+			    <li class="nav-item"><a class="nav-link" href="/discounts">Discounts</a></li>
+			    <li class="nav-item"><a class="nav-link" href="/limits">Limits</a></li>
+			    <li class="nav-item"><a class="nav-link" href="/details">Details</a></li>
+			  </ul>
+	      </div>
+		</div>
+
 	</nav>
 
     @yield('content')
