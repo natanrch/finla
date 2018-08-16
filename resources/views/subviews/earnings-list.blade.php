@@ -1,5 +1,5 @@
 <h2>Earnings</h2>
-<table class="table">
+<table class="table table-striped table-bordered">
 	<tr>
 		<th>Date</th>
 		<th>Value</th>

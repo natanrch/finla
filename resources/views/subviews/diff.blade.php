@@ -1,5 +1,5 @@
 <h3>How much can I expend?</h3>
-	<table class="table">
+	<table class="table table-bordered">
 		
 	@foreach($diff as $key => $value)
 		<?php

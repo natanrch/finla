@@ -13,7 +13,7 @@
 
 @include('subviews.form-entry')
 
-<table class="table">
+<table class="table table-bordered">
 	<tr>
 		<th>Date</th>
 		<th>Value</th>

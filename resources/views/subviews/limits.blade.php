@@ -1,5 +1,6 @@
-<table class="table">
-	<tr><th><h3>Limits</h3></th></tr>		
+<h3>Limits</h3>
+<table class="table table-bordered">
+
 	@if($limits != [] or $limits == 0)
 		<tr>
 		@foreach($limits as $l)
